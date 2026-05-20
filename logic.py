@@ -54,31 +54,94 @@ def merge(mat):
 
     #for rows in mat:
         #print(rows)
-    
     return mat
     
 def move_left(mat):
     mat = compress(mat)
     mat = merge(mat)
     mat = compress(mat)
-    
+
     #for rows in mat:
         #print(rows)
-    
     return mat
     
     
-def reverse():
-    ...
+def reverse(mat):
+    for rows in mat:
+        rows.reverse()
+        
+    for rows in mat:
+        print(rows)
+    return mat
+        
+
+def transpose(mat):
+    new_mat = []
+    for i in range(4):
+        new_mat.append([0] * 4)
+        
+    for i in range(4):
+        for j in range(4):
+            new_mat[i][j] = mat[j][i]
+                
+    for rows in new_mat:
+        print(rows)
+        
+    return new_mat
     
     
-def transpose():
-    ...
+def move_right(mat):
+    mat = reverse(mat)
+    mat = move_left(mat)
+    mat = reverse(mat)
+    return mat
     
+def move_up(mat):
+    mat = transpose(mat)
+    mat = move_left(mat)
+    mat = transpose(mat)
+    return  mat
+    
+def move_down(mat):
+    mat = transpose(mat)
+    mat = move_right(mat)
+    mat = transpose(mat)
+    return mat
+    
+    
+def get_current_state(mat):
+    for rows in mat:
+        for item in rows:
+            if item == 2048:
+                return 'WON'
+            
+    for rows in mat:
+        for item in rows:
+            if item == 0:
+                return 'GAME NOT OVER'
+            
+    for rows in mat:
+        for i in range(0, 3):
+            if rows[i] == rows[i+1]:
+                return 'GAME NOT OVER'
+    for i in range(0, 3):
+        for j in range(0, 4):
+            if mat[i][j] == mat[i+1][j]:
+                return 'GAME NOT OVER'
+                    
+    return 'LOST'
+
     
 def main():
-    mat = start_game()
-    mat = add_new_2(mat)
-    move_left(mat)
+    mat = [[2, 4, 0, 0],
+       [0, 0, 2, 4],
+       [0, 0, 0, 8],
+       [2, 0, 0, 2]]
+    #mat = start_game()
+    #mat = add_new_2(mat)
+    #mat = move_left(mat)
+    #mat = reverse(mat)
+    mat = transpose(mat)
+    move_right(mat)
     
 main()
