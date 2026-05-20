@@ -28,7 +28,6 @@ def add_new_2(mat):
     
     
 def compress(mat):
-    #print(mat)
     
     new_mat = []
     for row in mat:
@@ -40,18 +39,33 @@ def compress(mat):
             new_row.append(0)
         new_mat.append(new_row)
         
-    #print(new_row)
-    for rows in new_mat:
-        print(rows)
+    return new_mat
+    #for rows in new_mat:
+        #print(rows)
    
     
+def merge(mat):
+    for rows in mat:
+        for i in range(0, 3):
+            if rows[i] == rows[i+1]:
+                new = rows[i] * 2
+                rows[i] = new
+                rows[i+1] = 0
+
+    #for rows in mat:
+        #print(rows)
     
-def merge():
-    ...
+    return mat
     
+def move_left(mat):
+    mat = compress(mat)
+    mat = merge(mat)
+    mat = compress(mat)
     
-def move_left():
-    ...
+    #for rows in mat:
+        #print(rows)
+    
+    return mat
     
     
 def reverse():
@@ -65,6 +79,6 @@ def transpose():
 def main():
     mat = start_game()
     mat = add_new_2(mat)
-    compress(mat)
+    move_left(mat)
     
 main()
