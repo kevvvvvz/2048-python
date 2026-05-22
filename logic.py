@@ -1,5 +1,4 @@
 import random
-import sys
 
 def start_game():
     
@@ -16,6 +15,12 @@ def start_game():
     return mat
 
 def add_new_2(mat):
+    for rows in mat:
+        if 0 in rows:
+            break
+        else:
+            return mat
+        
     while True:
         r = random.randint(0, 3)
         c = random.randint(0, 3)
@@ -70,8 +75,8 @@ def reverse(mat):
     for rows in mat:
         rows.reverse()
         
-    for rows in mat:
-        print(rows)
+    #for rows in mat:
+        #print(rows)
     return mat
         
 
@@ -84,8 +89,8 @@ def transpose(mat):
         for j in range(4):
             new_mat[i][j] = mat[j][i]
                 
-    for rows in new_mat:
-        print(rows)
+    #for rows in new_mat:
+        #print(rows)
         
     return new_mat
     
@@ -133,15 +138,17 @@ def get_current_state(mat):
 
     
 def main():
-    mat = [[2, 4, 0, 0],
-       [0, 0, 2, 4],
-       [0, 0, 0, 8],
-       [2, 0, 0, 2]]
+    #mat = [[2, 4, 0, 0],
+    #   [0, 0, 2, 4],
+    #   [0, 0, 0, 8],
+    #   [2, 0, 0, 2]]
     #mat = start_game()
     #mat = add_new_2(mat)
     #mat = move_left(mat)
     #mat = reverse(mat)
-    mat = transpose(mat)
-    move_right(mat)
-    
-main()
+    #mat = transpose(mat)
+    #move_right(mat)
+    ...
+
+if __name__ == "__main__":
+    main()
